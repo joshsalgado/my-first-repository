@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="ua5Pug" name="Course Plugin" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" displaySplashScreen="1">
   <MAINGROUP id="mIDlkp" name="Course Plugin">
     <GROUP id="{CD29536D-8845-4D04-0286-4D08E4475253}" name="Source">
       <FILE id="ixTWBe" name="PluginEditor.cpp" compile="1" resource="0"
