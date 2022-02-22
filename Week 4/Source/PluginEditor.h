@@ -42,8 +42,23 @@ public:
 
 private:
     
+    /*======= SLIDER 1 ======= */
+    
     /* The Slider Member For Our UI */
-    juce::Slider mSlider;
+    juce::Slider mGainAmountSlider;
+    /* This is a helpful juce class to attach our slider to our value tree */
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> mGainAmountSliderAttachment;
+    
+    /* The Slider Member For Our UI */
+    juce::Slider mFMAmountSlider;
+    /* This is a helpful juce class to attach our slider to our value tree */
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> mFMAmountSliderAttachment;
+    
+    /* The Slider Member For Our UI */
+    juce::Slider mFMFrequencySlider;
+    /* This is a helpful juce class to attach our slider to our value tree */
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> mFMFrequencySliderAttachment;
+    
     
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.

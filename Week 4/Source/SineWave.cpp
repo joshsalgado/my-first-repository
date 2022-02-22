@@ -24,12 +24,32 @@ void SineWave::initialize(float inFrequencyHz, float inSampleRate) {
     mSampleRate = inSampleRate;
     
     mSmoothedGain.reset(inSampleRate, 0.01);
+    //mSmoothedFreq.reset(inSampleRate, 0.01);
+
+    
 }
 
 float SineWave::getNextSample() {
     
     // calculate our sine function output -- using a sin call scaled to repete between 0 - 1 on the input
     float output = std::sin(juce::MathConstants<float>::twoPi * mPhase);
+    
+    // move our phase forward in the sign table by a single step determined by our desired samplerate & playback hz
+    mPhase += (mFreqHz + mSmoothedFreq.getNextValue()) / mSampleRate;
+    
+    // if we go passed 1 -- lets loop back around the sine wave
+    if (mPhase > 1.f) {
+        mPhase -= 1.f;
+    }
+    
+    // return the output to the caller
+    return output * mSmoothedGain.getNextValue();
+\
+}
+
+float SineWave::getNextSampleWithFM(float inFMOperator)
+{
+    float output = std::sin(juce::MathConstants<float>::twoPi * (mPhase + inFMOperator));
     
     // move our phase forward in the sign table by a single step determined by our desired samplerate & playback hz
     mPhase += mFreqHz / mSampleRate;
@@ -52,4 +72,13 @@ void SineWave::setGain(float inGain)
 float SineWave::getGain()
 {
     return mSmoothedGain.getTargetValue();
+}
+void SineWave::setFrequency(<#float sineFreq#>)
+{
+    mSmoothedFreq.setTargetValue(sineFreq);
+}
+
+float SineWave::getFrequency()
+{
+    return mSmoothedFreq.getTargetValue();
 }

@@ -15,8 +15,7 @@
 class SineWave {
     
 // Public indicates that these methods will be available to the outside program
-    
-// ex SineWave.initialize(554, 44100)
+        
 public:
     
     /* CONSTRUCTOR
@@ -51,11 +50,18 @@ public:
      */
     float getNextSample();
     
+    /* getNextSample w/ FM */
+    float getNextSampleWithFM(float inFMOperator);
+    
     /* */
     void setGain(float inGain);
     
     /* */
     float getGain();
+    
+    void setFrequency(float sineFreq);
+    
+    float getFrequency();
     
     
 // Private means these are not accessible to the outside world
@@ -69,6 +75,8 @@ private:
     float mPhase = 0;
     
     juce::LinearSmoothedValue<float> mSmoothedGain;
+    juce::LinearSmoothedValue<float> mSmoothedFreq;
+
 };
 
 #endif /* SineWave_h */
